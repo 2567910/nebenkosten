@@ -14,7 +14,7 @@
 
 
 $(document).ready(function () {
-
+    var firestore = firebase.firestore();
 
     try {
         let app = firebase.app();
@@ -28,12 +28,12 @@ $(document).ready(function () {
 
     if ($('.needs-validation').length) $().validateForms();
     if ($('#cards').length) $().initCards();
-
+    if ($('#loadplaces').length) $().loadPlaces(firestore);
     //   var db = firebase.database().ref().child('test');
     //   db.on('value', function(snapshot) {
     //     showPlaces(snapshot.val());
     // });
-    var firestore = firebase.firestore();
+
     // firestore.collection("places").add({
     //     stadt: "Weimar",
     //     plz: 99428,
@@ -47,16 +47,6 @@ $(document).ready(function () {
     //     console.error("Error adding document: ", error);
     // });
 
-    logWeinheit(firestore);
+
 
 });
-
-
-function logWeinheit(firestore) {
-    firestore.collection("places").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-            console.log(JSON.stringify(doc.data()));
-        });
-    });
-}

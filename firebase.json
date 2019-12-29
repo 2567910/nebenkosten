@@ -11,9 +11,10 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/place/**",
+        "destination": "/place.html"
       }
     ]
+
   }
 }
