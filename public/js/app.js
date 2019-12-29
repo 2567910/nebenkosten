@@ -12,17 +12,22 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log("App.js");
+
+$(document).ready(function () {
+
+
     try {
         let app = firebase.app();
         let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] ===
-          'function');
+            'function');
         document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
+    } catch (e) {
         console.error(e);
         document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-      }
+    }
+
+    if ($('.needs-validation').length) $().validateForms();
+    if ($('#cards').length) $().initCards();
 
     //   var db = firebase.database().ref().child('test');
     //   db.on('value', function(snapshot) {
@@ -41,37 +46,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // .catch(function(error) {
     //     console.error("Error adding document: ", error);
     // });
-    validateForms();
+
     logWeinheit(firestore);
 
 });
 
 
-function logWeinheit(firestore){
+function logWeinheit(firestore) {
     firestore.collection("places").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-        console.log(JSON.stringify(doc.data()));
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+            console.log(JSON.stringify(doc.data()));
+        });
     });
-});
-}
-function validateForms(){
-
-          // Example starter JavaScript for disabling form submissions if there are invalid fields
-
-              // Fetch all the forms we want to apply custom Bootstrap validation styles to
-              var forms = document.getElementsByClassName('needs-validation');
-
-              // Loop over them and prevent submission
-              var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                  if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                  }
-                  form.classList.add('was-validated');
-                }, false);
-              });
-
-
 }
