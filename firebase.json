@@ -16,7 +16,7 @@
       },
       {
         "source": "/create-place/**",
-        "destination": "./create-place.html"
+        "destination": "/create-place.html"
       }
     ]
 
