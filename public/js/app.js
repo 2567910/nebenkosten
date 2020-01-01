@@ -29,6 +29,7 @@ $(document).ready(function () {
     if ($('.needs-validation').length) $().validateForms();
     if ($('#cards').length) $().initCards();
     if ($('#loadplaces').length) $().loadPlaces(firestore);
+    if ($('#newplace').length) $().newPlace();
     //   var db = firebase.database().ref().child('test');
     //   db.on('value', function(snapshot) {
     //     showPlaces(snapshot.val());
