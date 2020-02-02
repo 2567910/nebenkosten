@@ -3,15 +3,16 @@ $.fn.newPlace = function (firestore) {
 
 
     $('#toBeTranslatedForm').submit(function (event) {
-        console.log("form was submittet" + $('#city').val() + $('#street').val());
         event.preventDefault();
+        console.log($('#city').val()+ " = ");
+        console.log("form was submittet" + $('#city').val() + $('#street').val() + "hi");
+
         firestore.collection("places").add({
             stadt: $('#city').val(),
-            plz: 99427,
+            plz: $('#zip').val(),
             strasse: $('#street').val(),
-            hausnummer: 11,
-        })
-            .then(function (docRef) {
+            hausnummer: $('#street-number').val(),
+        }).then(function (docRef) {
                 console.log("Document written with ID: ", docRef.id);
                 document.location.href = "/";
 
